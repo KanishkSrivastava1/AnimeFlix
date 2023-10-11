@@ -61,19 +61,19 @@ export class Upcominglist extends Component {
         if (this.state.anime) {
             return (
                 
-                <div className='container my-4'>
-                    <h1> Upcoming Animes </h1>
-                    <div className='row my-4'>
+                <div className='container py-3'>
+                    <h1 className='my-3'> Upcoming Animes </h1>
+                    <div className='row my-2'>
                     {this.state.loading && 
                         <div className='container' style={{height:'360px'}}>
-                        <button className="btn btn-primary" type="button" disabled>
+                        <button className="btn btn-white" type="button" disabled>
                         <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                         Loading...
                       </button>
                       </div>
                     }
                         {this.state.anime.map((e) => {
-                            return <div className='col sm-12 md-4 my-4'>
+                            return <div className='col sm-12 md-4 my-4 d-flex justify-content-center'>
                                 <Upcomingelement name={e.name} image={e.image} date={e.date} />
                             </div>
                         })}

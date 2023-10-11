@@ -64,7 +64,7 @@ export default function Anime(props) {
   const [submit,setSubmit]=useState(false);
   const [er,seter] = useState(false);
   return (
-    <div className="card shadow-lg p-3 mb-5" style={{width: "16rem"}}>
+    <div className="card shadow-lg p-3 mb-5 border-grey" style={{width: "16rem"}}>
         <img className="card-img-top" src={props.image} alt={props.title} />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>

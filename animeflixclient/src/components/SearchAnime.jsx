@@ -54,11 +54,11 @@ render() {
     if (this.state.anime) {
         console.log(this.state.anime[0]);
         return (
-            <div className='container my-4'>
-                <h2> Search Results </h2>
+            <div className='container my-2 '>
+                <h2 className='d-flex justify-content-center m-auto'> Search Results </h2>
                 {this.state.loading && 
-                        <div className='container' style={{height:'360px'}}>
-                        <button className="btn btn-primary" type="button" disabled>
+                        <div className='container d-flex ' style={{height:'360px'}}>
+                        <button className="btn btn-primary d-flex justify-content-center m-auto" type="button" disabled>
                         <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                         Loading...
                       </button>

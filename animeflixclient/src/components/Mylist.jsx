@@ -30,7 +30,10 @@ constructor(){
    
     if (this.state.anime) {
         return (
-            <div className='container my-4'>
+            <div className="h-100" style={{background:'black'}}>
+
+                
+            <div className='container '>
                 <h1> My List </h1>
                 {this.state.loading && 
                     <button className="btn btn-primary" type="button" disabled>
@@ -48,12 +51,16 @@ constructor(){
                 </div>
 
             </div>
+            </div>
         )
     } else {
         return (
-            <div className='container my-4'>
-                <h1> No Anime found in your list</h1>
-                <h2>Search anime name to add them</h2>
+            <div style={{background:'black'}}>
+                <div className='container my-4'>
+                    <h1> No Anime found in your list</h1>
+                    <h2>Search anime name to add them</h2>
+                </div>
+
             </div>
         )
     }
