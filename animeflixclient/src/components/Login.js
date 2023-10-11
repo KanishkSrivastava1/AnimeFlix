@@ -4,7 +4,7 @@ import logo from '../assets/logo.png'
 import bg from '../assets/Collage.jpeg'
 
 // Login functionality
-function Login() {
+function Login({ setLoggedIn, ...props }) {
   let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -29,6 +29,7 @@ function Login() {
       if (response.ok) {
         const json = await response.json()
         localStorage.setItem('token', json.authtoken)
+        setLoggedIn(true)
         navigate('/')
       } else {
         seterror(true)

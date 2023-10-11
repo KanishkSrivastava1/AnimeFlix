@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
-export default function Navbar(props) {
+export default function Navbar({ loggedIn, setLoggedIn, ...props }) {
   const onClick = () => {
     localStorage.removeItem('token')
+    setLoggedIn(false)
   }
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary color-org">
       <div className="container-fluid ">
@@ -50,7 +52,7 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
-          {!localStorage.getItem('token') ? (
+          {!loggedIn ? (
             <>
               <Link className="btn btn-primary mx-2" to="/login" role="button">
                 Login
