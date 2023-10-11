@@ -29,13 +29,18 @@
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.6); /* Adjust the alpha value (0.5 in this example) to control the opacity */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Adjust the alpha value (0.5 in this example) to control the opacity */
   /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; 
+  z-index: 1;
   border-radius: 10px;
 }
 
@@ -45,7 +50,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control the overlay opacity */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the alpha value to control the overlay opacity */
   opacity: 0;
   transition: opacity 0.3s; /* Add a smooth transition for the opacity change */
   display: flex;
@@ -58,7 +68,6 @@
   opacity: 1; /* Show the overlay when the card is hovered */
 }
 
-
 .form-signin {
   max-width: 330px;
   padding: 1rem;
@@ -68,13 +77,13 @@
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type='email'] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin input[type='password'] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
