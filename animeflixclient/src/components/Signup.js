@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import bg from '../assets/Collage.jpeg'
 
-function Signup() {
+function Signup({ setLoggedIn, ...props }) {
   let navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,11 +22,12 @@ function Signup() {
           },
         }
       )
-      // console.log(response.status)
+    
       if (response.status === 200) {
         const json = await response.json()
         // console.log(json);
         localStorage.setItem('token', json.authtoken)
+        setLoggedIn(true)
         navigate('/')
       } else {
         seterror(true)
