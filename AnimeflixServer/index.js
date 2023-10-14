@@ -11,6 +11,9 @@ mongoose.connect(cstring,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });
+
+//cors is a web security feature that controls acess to different domains
+//BYPASS SAME ORIGIN POLICY
 app.use(cors());
 app.use(express.json())
 //Routes

@@ -8,7 +8,21 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const fetchUser = require('../middleware/fetchuser')
 
+
+// to create token for authorisation 
 const jwtSecret = "klaud approves this";
+
+//post is used when changes to our server are made 
+//get is used to obt info from api, no change in server
+
+//req - request, data sent by client to the server
+// res - response, data the server is sending to client 
+
+//bcrypt is used to hash/encrypt the password 
+//SALT is a string generally added to the original password before encryting
+
+//jwt is a way to create token btw to parties 
+// a jwt secret token is created to authorize the token 
 
 // ROUTE1
 // Create a new User using POST "api/auth/createUser" No Login req 

@@ -55,7 +55,7 @@ router.post("/deleteanime/:id",fetchUser,async (req,res)=>{
     try {
         const id  = req.params.id;
         const user = req.id;
-        console.log(yo)
+        // console.log(yo)
         await User.updateOne({_id:user},{
             $pull:{animeId:{animeid:id}}
         })
