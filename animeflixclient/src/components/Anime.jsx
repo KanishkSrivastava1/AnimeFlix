@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 //  object/card of animes searched
 export default function Anime(props) {
   const onClick = async (e) => {
     e.preventDefault()
+    const error = () => toast('Something Went Wrong');
+    const success = () => toast('Added To List');
 
     const url = `https://myanimelist.p.rapidapi.com/anime/${props.animeid}`
     const options = {
@@ -27,17 +31,9 @@ export default function Anime(props) {
             'auth-token': localStorage.getItem('token'),
           },
         })
-        // submit prompt
-        setSubmit(true)
-        setTimeout(() => {
-          setSubmit(false)
-        }, 1000)
+        success()
       } else {
-        // error prompt
-        seter(true)
-        setTimeout(() => {
-          seter(false)
-        }, 1000)
+        error()
       }
     } catch (error) {
       console.error(error)
@@ -57,18 +53,28 @@ export default function Anime(props) {
     }
   }
 
+
   const [submit, setSubmit] = useState(false)
   const [er, seter] = useState(false)
   return (
-    <div className="card shadow-lg p-3 mb-5" style={{width: "16rem"}}>
-        <img className="card-img-top" src={props.image} alt={props.title} />
-        <div className="card-body">
-          <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">{props.description.slice(0,100)+"..."}</p>
-          {(!submit&&!er)&&<button type="submit" onClick ={onClick} className="btn btn-primary">Add to List</button>}
-          {submit&&<div className="alert alert-primary " role="alert">Added Successfully!!</div>}
-          {er&&<div className="alert alert-primary " role="alert">Some Error Occured</div>}
+
+
+
+    <div className="max-w-sm bg-white  rounded-lg shadow dark:bg-gray-800 relative">
+      <Toaster/>
+    <img className="w-full rounded-lg" src={props.image} alt={props.title.slice(0,5)} />
+    
+    <div className="absolute  top-0 left-0 right-0 bottom-0 opacity-0 transition-opacity duration-300 bg-gray-800 bg-opacity-70 hover:opacity-100 flex justify-center items-center">
+        <div className="p-4 ">
+            <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">{props.title}</h3>
+            <p className="mb-3 text-gray-700 dark:text-gray-200">{props.description.slice(0, 60) + '...'}</p>
+            {!submit && !er && (
+          <button type="submit" onClick={onClick} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Add to List
+          </button>
+        )}
         </div>
-      </div>
+    </div>
+</div>
   )
 }

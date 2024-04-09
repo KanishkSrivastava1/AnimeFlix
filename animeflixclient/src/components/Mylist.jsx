@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Animetemp from './Mylistelements'
+import Loader from './Loader'
 
 // My list page
 export class Mylist extends Component {
@@ -30,20 +31,16 @@ export class Mylist extends Component {
   render() {
     if (this.state.anime) {
       return (
-        <div className="h-100" style={{ background: 'black' }}>
-          <div className="container ">
-            <h1> My List </h1>
+          <div className="mx-6">
+            
+<h3 class="text-3xl my-4 font-bold dark:text-white">My Animes</h3>
+
             {this.state.loading && (
-              <button className="btn btn-primary" type="button" disabled>
-                <span
-                  className="spinner-grow spinner-grow-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Getting your Animes...
-              </button>
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+             <Loader/>
+           </div>
             )}
-            <div className="row my-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
               {this.state.anime.map((e) => {
                 // console.log(e.animelistid)
                 return (
@@ -58,7 +55,6 @@ export class Mylist extends Component {
               })}
             </div>
           </div>
-        </div>
       )
     } else {
       return (

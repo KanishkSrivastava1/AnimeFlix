@@ -13,7 +13,8 @@ function App() {
     localStorage.getItem('token') ? true : false
   )
   return (
-    <>
+      <div className='bg-gray-800 h-max'>
+      
       <Navbar title="AnimeFlix" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -22,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" element={<Signup setLoggedIn={setLoggedIn} />}  />
       </Routes>
-    </>
+    </div>
   )
 }
 

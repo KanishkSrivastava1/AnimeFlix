@@ -4,76 +4,78 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 export default function Navbar({ loggedIn, setLoggedIn, ...props }) {
+  //on clicking logout button, onClick function will be called 
   const onClick = () => {
     localStorage.removeItem('token')
     setLoggedIn(false)
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary color-org">
-      <div className="container-fluid ">
-        <Link className="navbar-brand" to="/">
-          <img
-            src={logo}
-            width="50"
-            height="50"
-            className="d-inline-block align-center mx-2"
-            alt=""
-          />
-          {props.title}
-        </Link>
-        <Link className="navbar-brand" to="/"></Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/list">
-                My List
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
-          </ul>
-          {!loggedIn ? (
-            <>
-              <Link className="btn btn-primary mx-2" to="/login" role="button">
-                Login
-              </Link>
-              <Link className="btn btn-primary mx-2" to="/signup" role="button">
-                SignUp
-              </Link>
-            </>
-          ) : (
-            <Link
-              className="btn btn-primary mx-2"
-              onClick={onClick}
-              to="/login"
-              role="button"
-            >
-              Logout
-            </Link>
-          )}
+    <>
+
+
+      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            {/*<img src={logo} className="h-8" alt="AnimeFlix Logo" />*/}
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AnimeFlix</span>
+          </Link>
+          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+            {!loggedIn ? (
+              <>
+                <button type="button" className="mx-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+                  <Link to="/login" role="button">
+                    Login
+                  </Link>
+                </button>
+
+                <button type="button" className="mx-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <Link to="/signup" role="button">
+                    SignUp
+                  </Link>
+                </button>
+              </>
+            ) : (
+              <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <Link
+
+                  onClick={onClick}
+                  to="/login"
+                  role="button"
+                >
+                  Logout
+                </Link>
+              </button>
+            )}
+
+
+
+            <button data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
+              <span className="sr-only">Open main menu</span>
+              <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+              </svg>
+            </button>
+          </div>
+          <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+            <ul className="flex flex-col font-medium py-4 px-10 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li>
+                <Link to="/" className="block py-2 px-3 mx-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</Link>
+              </li>
+              <li>
+                <Link to="/about" className="block py-2 px-3 mx-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</Link>
+              </li>
+              <li>
+                <Link to="/list" className="block py-2 px-3 mx-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">My List</Link>
+              </li>
+
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Upcomingelement from './Upcomingelement'
-
+import Loader from './Loader'
 export class Upcominglist extends Component {
   constructor(props) {
     super(props)
@@ -30,15 +30,15 @@ export class Upcominglist extends Component {
     const datedata = await fetch('https://data.simkl.in/calendar/anime.json', {
       method: 'GET',
     })
-    const datajson = await datedata.json()
+    const datedatajson = await datedata.json()
+    // console.log(datedatajson)
 
-    const upanime = []
+    const upanimeSet = new Set();
     if (d.anime) {
       d.anime.forEach(async (e) => {
         if (e.status != 'Finished Airing') {
-          const data = datajson.find((item) => item.title == e.name)
-          let date = new Date().toJSON()
-          if (data && date <= data.date) {
+          const data = datedatajson.find((item) => item.title == e.name)
+          if (data) {
             const upcomingAnime = {
               date: data.date,
               name: e.name,
@@ -46,48 +46,42 @@ export class Upcominglist extends Component {
               status: e.status,
               image: e.image,
             }
-            const present = upanime.includes(upcomingAnime)
-            if (!present) {
-              upanime.push(upcomingAnime)
-            }
+            upanimeSet.add(upcomingAnime);
           }
         }
       })
     }
+    const upanime = Array.from(upanimeSet);
     this.setState({ anime: upanime, loading: false })
   }
 
   render() {
     if (this.state.anime) {
       return (
-        <div className="container py-3">
-          <h1 className="my-3"> Upcoming Animes </h1>
-          <div className="row my-2">
+        <div className="m-10">
+
+          <h4 class="text-2xl my-4 font-bold dark:text-white">Upcoming Anime</h4>
+
             {this.state.loading && (
-              <div className="container" style={{ height: '360px' }}>
-                <button className="btn btn-white" type="button" disabled>
-                  <span
-                    className="spinner-grow spinner-grow-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Loading...
-                </button>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <Loader/>
               </div>
             )}
-            {this.state.anime.map((e) => {
-              return (
-                <div className="col sm-12 md-4 my-4 d-flex justify-content-center">
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {this.state.anime.map((e) => {
+                return (
+
                   <Upcomingelement
                     name={e.name}
                     image={e.image}
                     date={e.date}
                   />
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
-        </div>
       )
     } else {
       return (
