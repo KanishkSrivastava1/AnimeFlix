@@ -24,48 +24,43 @@ export class Mylist extends Component {
       }
     )
     const data = await response.json()
-    this.setState({ anime: data.anime })
+    this.setState({ anime: data.anime|| [] })
     this.setState({ loading: false })
   }
 
   render() {
-    if (this.state.anime) {
-      return (
-          <div className="mx-6">
-            
-<h3 class="text-3xl my-4 font-bold dark:text-white">My Animes</h3>
-
-            {this.state.loading && (
-             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-             <Loader/>
-           </div>
-            )}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {this.state.anime.map((e) => {
-                // console.log(e.animelistid)
-                return (
-                  <div className="col md-4 my-4">
-                    <Animetemp
-                      title={e.name}
-                      animeid={e.animelistid}
-                      image={e.image}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-      )
-    } else {
-      return (
-        <div style={{ background: 'black' }}>
-          <div className="container my-4">
-            <h1> No Anime found in your list</h1>
-            <h2>Search anime name to add them</h2>
-          </div>
+    return (
+      <div className="mx-6">
+      <h3 className="text-3xl my-4 font-bold dark:text-white">My Animes</h3>
+      {this.state.loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <Loader />
         </div>
-      )
-    }
+      ) : (
+        this.state.anime.length !== 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {this.state.anime.map((e) => (
+              <div key={e.animelistid} className="col-span-2 md:col-span-1 my-4">
+                <Animetemp
+                  title={e.name}
+                  animeid={e.animelistid}
+                  image={e.image}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div>
+            <div class="max-w-sm mx-4 p-6rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                          <h5 class="mb-2 text-2xl  font-bold tracking-tight text-gray-700 dark:text-gray-400">No Animes Found <br/>
+                      Add animes to the list by searching </h5>
+                  </div>
+          </div>
+        )
+      )}
+    </div>
+    
+    )
   }
 }
 
