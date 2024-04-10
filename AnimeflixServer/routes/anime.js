@@ -11,25 +11,33 @@ const createAnime = require('../middleware/createanime');
 // create Animedata or add in user list using POST "api/anime/addanime and add in list "
 router.post("/addanime",fetchUser,createAnime,async (req,res)=>{ 
     try {
-        const id  = req.id;
+        const id = req.id;
         const data = req.body;
-       
-        const animedata = await Anime.findOne({animelistid:data.animelistid});
     
-        // MAKE SYSTEM TO NOT ADD SAME AGAIN 
-        var animeid =  {animeid:data.animelistid};
-        // animeId:{$elemMatch:{animeId:animeid}}
+        const animedata = await Anime.findOne({ animelistid: data.animelistid });
     
-        await User.updateOne(
-            { _id: id },
-            { $addToSet: { animeId: animeid } }
+        if (!animedata) {
+            throw new Error('Anime data not found');
+        }
+    
+        const animeId = { animeid: data.animelistid };
+    
+        const user = await User.findOneAndUpdate(
+            { _id: id, animeId: { $not: { $elemMatch: { animeid: data.animelistid } } } },
+            { $addToSet: { animeId: animeId } },
+            { new: true }
         );
-          
+    
+        if (!user) {
+            throw new Error('Anime already exists in user list');
+        }
+    
         res.status(200).send();
     } catch (error) {
-        console.log(error.message);
-        res.status(500).send("Some Error Occured")
+        console.error(error.message);
+        res.status(500).send("Some Error Occurred");
     }
+    
 })
 
 
