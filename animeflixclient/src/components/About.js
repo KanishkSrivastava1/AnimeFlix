@@ -1,61 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function About() {
   return (
-    <div className="container">
-      <div className="accordion" id="accordionExample">
-        <h1>About Us</h1>
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              About The App
-            </button>
-          </h2>
-          <div
-            id="collapseOne"
-            className="accordion-collapse collapse show"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body">
-              AnimeFlix is an online website to create your own anime list and
-              get updates on any upcoming episode of the animes in your list.
-              <br />
-              By searching you can search for an anime and add it to your list
-              <br />
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-            >
-              Contact Us!
-            </button>
-          </h2>
-          <div
-            id="collapseTwo"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body">
-              <a href="itskanishks@gamil.com"> Mail</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+<div class= "flex justify-center">
+  <div class="max-w-m my-10 p-6  justify-center rounded-lg ">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">AnimeFlix</h5>
+  <p class="my-5 font-normal  text-gray-700 dark:text-gray-400">Embark on an exhilarating journey with AnimeFlix,<br/> where your anime list transforms into a captivating catalog of upcoming episodes.<br/> Dive into a world of boundless imagination and endless excitement, curated just for you. </p>
+  <Link to='/login' class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Get started
+      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+      </svg>
+  </Link>
+  </div>
+
+</div>
+
   )
 }
