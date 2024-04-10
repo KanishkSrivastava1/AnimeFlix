@@ -35,22 +35,25 @@ export class Upcominglist extends Component {
 
     const upanimeSet = new Set();
     if (d.anime.length !== 0) {
-      console.log(d.anime)
-      d.anime.forEach(async (e) => {
-        if (e.status != 'Finished Airing') {
-          const data = datedatajson.find((item) => item.title == e.name)
-          if (data) {
-            const upcomingAnime = {
-              date: data.date,
-              name: e.name,
-              animelistid: e.animelistid,
-              status: e.status,
-              image: e.image,
-            }
-            upanimeSet.add(upcomingAnime);
-          }
-        }
-      })
+      d.anime
+  .filter(e => e !== null) // Filter out null values
+  .forEach(async (e) => {
+    console.log(e);
+    if (e.status && e.status !== 'Finished Airing') {
+      const data = datedatajson.find((item) => item.title === e.name);
+      if (data) {
+        const upcomingAnime = {
+          date: data.date,
+          name: e.name,
+          animelistid: e.animelistid,
+          status: e.status,
+          image: e.image,
+        };
+        upanimeSet.add(upcomingAnime);
+      }
+    }
+  });
+
     }
     const upanime = Array.from(upanimeSet);
     this.setState({ anime: upanime, loading: false })
