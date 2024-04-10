@@ -34,7 +34,8 @@ export class Upcominglist extends Component {
     // console.log(datedatajson)
 
     const upanimeSet = new Set();
-    if (d.anime) {
+    if (d.anime.length !== 0) {
+      console.log(d.anime)
       d.anime.forEach(async (e) => {
         if (e.status != 'Finished Airing') {
           const data = datedatajson.find((item) => item.title == e.name)
