@@ -22,7 +22,7 @@ export default function Upcomingelement(props) {
     
 
 
-    <div className="max-w-sm bg-white  rounded-lg  dark:bg-gray-800 relative">
+    <div className="max-w-sm bg-white  rounded-lg   dark:bg-gray-800 relative">
     <img className="w-full rounded-lg" src={props.image} alt={props.name} />
     
     <div className="absolute  top-0 left-0 right-0 bottom-0 opacity-0 transition-opacity duration-300 bg-gray-800 bg-opacity-70 hover:opacity-100 flex justify-center items-center">

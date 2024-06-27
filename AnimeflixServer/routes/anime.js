@@ -13,12 +13,12 @@ router.post("/addanime",fetchUser,createAnime,async (req,res)=>{
     try {
         const id = req.id;
         const data = req.body;
-    
+        
         const animedata = await Anime.findOne({ animelistid: data.animelistid });
     
-        if (!animedata) {
-            throw new Error('Anime data not found');
-        }
+        // if (!animedata) {
+        //     throw new Error('Anime data not found');
+        // }
     
         const animeId = { animeid: data.animelistid };
     
@@ -27,17 +27,18 @@ router.post("/addanime",fetchUser,createAnime,async (req,res)=>{
             { $addToSet: { animeId: animeId } },
             { new: true }
         );
-    
+        const message = {
+            message : "Anime Added"
+        }
         if (!user) {
-            throw new Error('Anime already exists in user list');
+            message.message= "Already present in list"
         }
     
-        res.status(200).send();
+        res.status(200).send(message);
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Some Error Occurred");
+        console.error({message : error.message});
+        res.status(500).send({message : error.message});
     }
-    
 })
 
 
